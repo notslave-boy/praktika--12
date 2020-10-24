@@ -8,8 +8,7 @@ namespace Lab_12
         static void Main(string[] args)
         {
             Animals cat = new Mlek("cat");
-            Animals cat2 = (Animals)cat.Clone();
-            cat2.Display();
+            Animals copycat = (Animals)cat.Clone();
             Console.ReadKey();
         }
     }
@@ -22,7 +21,8 @@ namespace Lab_12
         {
             return this.MemberwiseClone();
         }
-    }
+       
+    } 
 
     class Mlek : Animals //наследуемый класс
     {
@@ -69,6 +69,8 @@ namespace Lab_12
     {
         List<Animals> objlist = new List<Animals>() { new Mlek("Cat"), new Parnokop("Cow"), new Bird("Pinguine") };
     }
+
+    
 
     
 
