@@ -9,66 +9,90 @@ namespace Lab_12
         {
             Animals cat = new Mlek("cat");
             Animals copycat = (Animals)cat.Clone();
+            copycat.Display();
+
+            Zoo zoo = new Zoo();
+            zoo.Show();
             Console.ReadKey();
+
+            
         }
     }
-
+       
     public abstract class Animals : ICloneable
     {
         public string Name { get; set; }
+
+        string[] animals = new string[] { "cat", "cow", "dog" };
         public abstract void Display();
         public object Clone()
         {
             return this.MemberwiseClone();
         }
-       
-    } 
+    }
+
+
 
     class Mlek : Animals //наследуемый класс
     {
-        public string _name { get; set; }
+        public string Name { get; set; }
 
         public Mlek(string name)
         {
-            _name = name;
+            Name = name;
         }
 
         public override void Display()
         {
-            Console.WriteLine("Имя животного: " + _name);
+            Console.WriteLine("Имя животного: " + Name);
         }
 
     }
     class Parnokop : Animals //наследуемый класс
     {
-        public string _name { get; set; }
+        public string Name { get; set; }
         public Parnokop(string name)
         {
-            _name = name;
+            Name = name;
         }
         public override void Display()
         {
-            Console.WriteLine("Имя животного: " + _name);
+            Console.WriteLine("Имя животного: " + Name);
         }
 
     }
     class Bird : Animals //наследуемый класс
     {
-        public string _name { get; set; }
+        public string Name { get; set; }
         public Bird(string name)
         {
-            _name = name;
+            Name = name;
         }
         public override void Display()
         {
-            Console.WriteLine("Имя животного: " + _name);
+            Console.WriteLine("Имя животного: " + Name);
         }
     }
 
-    class Zoo //коллекция объектов дочерних экземпляров класса Animals
+    class Zoo : Ienumerable //коллекция объектов дочерних экземпляров класса Animals
     {
         List<Animals> objlist = new List<Animals>() { new Mlek("Cat"), new Parnokop("Cow"), new Bird("Pinguine") };
+
+        public void Show()
+        {
+            foreach(Animals i in objlist)
+            {
+                Console.WriteLine(i);
+            }
+        }
     }
+
+    public interface Ienumerable
+    {
+        public void Show();
+    }
+
+    
 
     
 
